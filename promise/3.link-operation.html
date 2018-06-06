@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一个promise对象的链式应用</title>
+</head>
+<body>
+<p>这是一个promise对象的链式应用，第一步异步操作完了，返回一个promise对象，就可以进行第二步，第二步完了打印结果，最后打印的结果是：</p>
+<h1></h1>
+</body>
+<script>
+    function step1() {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve('i am the step1'), 2000)
+
+        })
+    }
+
+    let str = '';
+    step1().then((value) => {
+//        返回的结果将传递给下一个then方法作为参数
+        return new Promise((resolve, reject) => {
+            console.log(value);
+            setTimeout(function () {
+                resolve('i am the step2')
+                str += value + ';'
+            }, 5000)
+
+        })
+    }).then((value) => {
+        str += value + ';'
+        document.querySelector('h1').innerHTML = str;
+        console.log(value);
+    })
+
+</script>
+</html>

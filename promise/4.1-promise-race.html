@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function loadImg(src) {
+        return new Promise((resolve, reject) => {
+            let img = document.createElement('img');
+            img.src = src;
+            img.onload = () => {
+                resolve(img)
+            };
+            img.onerror = (err) => {
+                resolve(err)
+            };
+        })
+    }
+    function showImgs(img) {
+        let p = document.createElement('p');
+        p.appendChild(img);
+        document.body.appendChild(p);
+    }
+
+    Promise.race([
+        loadImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528283804594&di=b8080510786ebe7bf89a2745f8c1b09b&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2F320_180%2Fvideo%2Fb4%2Fb45f5fd2871756c2fbbf624715da3874.jpg'),
+        loadImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528283686731&di=b84be07153312e16e91840a07d77e42b&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D2522536685%2C4275931682%26fm%3D214%26gp%3D0.jpg'),
+        loadImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528283709935&di=91d48ae3f8a529ee5b6be47ecd5449f7&imgtype=0&src=http%3A%2F%2Fpic.lvmama.com%2Fpc%2Ffeature%2F200912021840404597.jpg')
+
+    ]).then(showImgs)
+
+</script>
+</html>

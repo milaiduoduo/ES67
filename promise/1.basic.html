@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>simple promise</title>
+</head>
+<body>
+    <p>这是一个最基本的promise用法，得到的结果应该是'ok'.最后打印的结果是：</p>
+    <h1></h1>
+</body>
+<script>
+    let promise = new Promise(function(resolve,reject){
+        resolve('OK')
+    })
+    promise.then((value)=>{
+        console.log(value)
+        document.querySelector('h1').innerHTML=value;
+    })
+</script>
+</html>

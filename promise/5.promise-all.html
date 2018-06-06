@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise.all()</title>
+</head>
+<body>
+<h1></h1>
+</body>
+<script>
+    function person1() {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve('i am person1'), 10000)
+        })
+    }
+
+    function person2() {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve('i am person2'), 1000)
+        })
+    }
+
+    function person3() {
+        return new Promise((resolve, reject) => {
+            setTimeout(reject(new Error('something wrong in person3')), 6000)
+            //reject(new Error('something wrong in person3'))
+//            resolve('i am person3')
+        })
+    }
+
+    function print(values) {
+        document.querySelector('h1').innerHTML = values.join();
+    }
+
+    Promise.all([person3(), person2(), person1()]).then(print).catch((err) => {
+        console.log(err)
+    })
+</script>
+</html>
