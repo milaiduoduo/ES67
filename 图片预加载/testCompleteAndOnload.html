@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2> 1. 当把src放在completed和loaded之前，completed和loaded出现的顺序不确定！比如：第一次、第二次都有可能是'loaded'，到第二次或者第三次才是'completed,
+        loaded'。甚至出现了三次'loaded'，没有出现'completed,loaded'</h2>
+    <h2>2. 当把src放在最后，一直是'completed,loaded;'的顺序，所以看到的大多数写法src的赋值都在最后</h2>
+    <button id="btn1">加载图片</button>
+    <img id="img1" />
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('#btn1').on('click', function () {
+
+        let img = new Image();
+        let src =
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539605085766&di=c006b211dd387897470cafba805cd27b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3De3bfc5089fcad1c8c4b6f46417570d7c%2Fa686c9177f3e67091acc90d831c79f3df9dc55cd.jpg';
+
+        // $('#img1').attr('src', src);
+
+
+        if (img.complete) {
+            console.log('completed!!')
+        }
+        img.onload = function () {
+            console.log('loaded')
+            // $('#img1').attr('src', src)
+        }
+        img.src = src;
+
+
+    })
+</script>
+
+</html>
