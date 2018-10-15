@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <a href="javascript:;" class="btn" data-control="prev">上一页</a>
+        <a href="javascript:;" class="btn" data-control="next">下一页</a>
+    </p>
+    <div class="box">
+        <img id="img1" width="800" src="http://img17.3lian.com/d/file/201701/17/de7993b74ff5bbdcdeed802283b524ce.jpg"
+            alt="pic">
+    </div>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    let imgs = [
+        'http://img17.3lian.com/d/file/201701/17/de7993b74ff5bbdcdeed802283b524ce.jpg',
+        'http://img.pptjia.com/image/20180117/f4b76385a3ccdbac48893cc6418806d5.jpg',
+        'http://img17.3lian.com/d/file/201701/17/9a0d018ba683b9cbdcc5a7267b90891c.jpg',
+        'http://img2.3lian.com/2014cf/f6/146/d/93.jpg',
+        'http://pic1.win4000.com/wallpaper/a/569d8f65ab614.jpg'
+    ];
+    let index = 0,
+        len = imgs.length;
+    $('.btn').on('click', function () {
+        if ('prev' === $(this).data('control')) {
+            index = Math.max(0, --index);
+            // 可以代替
+            // index--;
+            // if(index<0){
+            //     index = 0;
+            // }
+        } else {
+            index = Math.min(len - 1, ++index);
+        }
+        document.title = (index + 1) + '/' + len;
+        $('#img1').attr('src', imgs[index]);
+    })
+</script>
+
+</html>
