@@ -9,22 +9,22 @@ Animal.prototype.bark = function () {
 let a1 = new Animal('dog');
 
 //--no problem--
-// a1.bark();
+// a1.bark(); //Animal
 
 //--problem
-// setTimeout(a1.bark, 1000);
+setTimeout(a1.bark, 1000); //Window
 
 
 
 //--solution--------------------------
 // 1. function wrapper-----
-setTimeout(function () {
-    a1.bark();
-}, 1000);
+// setTimeout(function () {
+//     a1.bark();
+// }, 1000);
 
-// 2.arrow function-------
-setTimeout(() => {
-    a1.bark();
-}, 1000);
+// // 2.arrow function-------
+// setTimeout(() => {
+//     a1.bark();
+// }, 1000);
 
 // 3. call, apply, bind-------
